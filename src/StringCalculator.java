@@ -6,9 +6,13 @@ public class StringCalculator {
 		String delimiters = ",\n";
 
 		if (numbers.startsWith("//")) {
-			String delimeter = numbers.substring(3, 4);
-			delimiters = delimiters + delimeter;
-			numbers = numbers.substring(5);
+			do {
+				int begin = numbers.indexOf("[");
+				int end = numbers.indexOf("]");
+				String delimeter = numbers.substring(begin, end);
+				delimiters = delimiters + delimeter;
+				numbers = numbers.substring(end + 1);
+			} while (numbers.startsWith("["));
 		}
 
 		StringTokenizer st = new StringTokenizer(numbers, delimiters);

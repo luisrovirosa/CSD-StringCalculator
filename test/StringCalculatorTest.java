@@ -64,4 +64,17 @@ public class StringCalculatorTest {
 		}
 
 	}
+
+	@Test
+	public void returnsSumWhenMultipleTokenAndSpecifiedTokenMultipleLengthSeparatedNumbers()
+			throws Exception {
+		assertEquals(6, calc.add("//[***]\n1***2***3"));
+
+	}
+
+	@Test
+	public void returnsSumWhenMultipleTokensMultipleLengthSeparatedNumbers()
+			throws Exception {
+		assertEquals(6, calc.add("//[*][=>]\n1=>2*3"));
+	}
 }
