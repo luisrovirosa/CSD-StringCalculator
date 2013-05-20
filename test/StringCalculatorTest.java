@@ -19,4 +19,8 @@ public class StringCalculatorTest {
 		assertEquals(-1, calc.add("-1"));
 	}
 
+	@Test
+	public void returnsSumWhenTwoCommaSeparatedNumbers() throws Exception {
+		assertEquals(3, calc.add("1,2"));
+	}
 }
