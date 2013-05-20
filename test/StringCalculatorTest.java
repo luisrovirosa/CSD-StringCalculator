@@ -30,4 +30,17 @@ public class StringCalculatorTest {
 	public void returnsSumWhenMultipleCommaSeparatedNumbers() {
 		assertEquals(6, calc.add("1,2,3"));
 	}
+
+	@Test
+	public void returnsSumWhenMultipleTokenSeparatedNumbers() {
+		assertEquals(6, calc.add("1\n2,3"));
+		assertEquals(6, calc.add("1,2\n3\n"));
+	}
+
+	@Test
+	public void returnsSumWhenMultipleTokenAndSpecifiedTokenSeparatedNumbers() {
+		assertEquals(3, calc.add("//[;]\n1;2"));
+		assertEquals(6, calc.add("//[&]\n1,2&3"));
+	}
+
 }

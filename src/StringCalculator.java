@@ -7,7 +7,15 @@ public class StringCalculator {
 			return 0;
 		}
 
-		StringTokenizer st = new StringTokenizer(numbers, ",");
+		String delimiters = ",\n";
+
+		if (numbers.startsWith("//")) {
+			String delimeter = numbers.substring(3, 4);
+			delimiters = delimiters + delimeter;
+			numbers = numbers.substring(5);
+		}
+
+		StringTokenizer st = new StringTokenizer(numbers, delimiters);
 		int suma = 0;
 		while (st.hasMoreElements()) {
 			suma = suma + Integer.parseInt(st.nextToken());
