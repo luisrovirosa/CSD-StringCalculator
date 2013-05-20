@@ -22,5 +22,7 @@ public class StringCalculatorTest {
 	@Test
 	public void returnsSumWhenTwoCommaSeparatedNumbers() throws Exception {
 		assertEquals(3, calc.add("1,2"));
+		assertEquals(23, calc.add("0,23"));
+		assertEquals(1, calc.add("-1,2"));
 	}
 }
