@@ -25,4 +25,9 @@ public class StringCalculatorTest {
 		assertEquals(23, calc.add("0,23"));
 		assertEquals(1, calc.add("-1,2"));
 	}
+
+	@Test
+	public void returnsSumWhenMultipleCommaSeparatedNumbers() {
+		assertEquals(6, calc.add("1,2,3"));
+	}
 }

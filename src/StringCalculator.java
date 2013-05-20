@@ -1,3 +1,5 @@
+import java.util.StringTokenizer;
+
 public class StringCalculator {
 
 	public int add(String numbers) {
@@ -5,13 +7,12 @@ public class StringCalculator {
 			return 0;
 		}
 
-		int posComma = numbers.indexOf(",");
-		if (-1 != posComma) {
-			int left = Integer.parseInt(numbers.substring(0, posComma));
-			int right = Integer.parseInt(numbers.substring(posComma + 1));
-			return left + right;
+		StringTokenizer st = new StringTokenizer(numbers, ",");
+		int suma = 0;
+		while (st.hasMoreElements()) {
+			suma = suma + Integer.parseInt(st.nextToken());
 		}
+		return suma;
 
-		return Integer.parseInt(numbers);
 	}
 }
