@@ -21,14 +21,8 @@ public class StringCalculatorTest {
 	}
 
 	@Test
-	public void returnsSumWhenTwoCommaSeparatedNumbers() throws Exception {
-		assertEquals(3, calc.add("1,2"));
-		assertEquals(23, calc.add("0,23"));
-
-	}
-
-	@Test
 	public void returnsSumWhenMultipleCommaSeparatedNumbers() throws Exception {
+		assertEquals(23, calc.add("0,23"));
 		assertEquals(6, calc.add("1,2,3"));
 	}
 
@@ -45,23 +39,29 @@ public class StringCalculatorTest {
 		assertEquals(6, calc.add("//[&]\n1,2&3"));
 	}
 
+	@Test(expected = Exception.class)
+	public void throwsExceptionWhenNegative() throws Exception {
+		calc.add("-1");
+	}
+
 	@Test
-	public void throwsExceptionWhenNegative() {
-		String[] testCases = { "-1", "-1,8,-5", "1,8,-5" };
-		String[] expectedMessageException = { "-1", "-1,-5", "-5" };
+	public void throwsExceptionWhenNegativeMessage() {
+		String[] testCases = { "-1", "-1,8,-5", "1,8,-5", "//[;]1,-1" };
+		String[][] expectedMessageException = { { "-1" }, { "-1", "-5" },
+				{ "-5" }, { "-1" } };
 
 		for (int i = 0; i < testCases.length; i++) {
-
 			try {
 				calc.add(testCases[i]);
 				fail();
 			} catch (Exception e) {
-				assertTrue(e.getMessage().contains("no se permiten negativos")
-						&& e.getMessage().contains(expectedMessageException[i]));
+				assertTrue(e.getMessage().contains("no se permiten negativos"));
+				for (String expectedNumber : expectedMessageException[i]) {
+					assertTrue(e.getMessage().contains(expectedNumber));
+				}
 
 			}
 		}
 
 	}
-
 }
