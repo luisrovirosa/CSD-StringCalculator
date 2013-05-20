@@ -2,11 +2,7 @@ import java.util.StringTokenizer;
 
 public class StringCalculator {
 
-	public int add(String numbers) {
-		if (numbers.isEmpty()) {
-			return 0;
-		}
-
+	public int add(String numbers) throws Exception {
 		String delimiters = ",\n";
 
 		if (numbers.startsWith("//")) {
@@ -17,8 +13,18 @@ public class StringCalculator {
 
 		StringTokenizer st = new StringTokenizer(numbers, delimiters);
 		int suma = 0;
+		StringBuffer numbersError = new StringBuffer();
 		while (st.hasMoreElements()) {
-			suma = suma + Integer.parseInt(st.nextToken());
+			int currentNumber = Integer.parseInt(st.nextToken());
+			if (0 > currentNumber) {
+				numbersError.append(currentNumber + ",");
+			}
+			suma = suma + currentNumber;
+		}
+		if (0 < numbersError.length()) {
+			throw new Exception("no se permiten negativos"
+					+ numbersError.toString());
+
 		}
 		return suma;
 
